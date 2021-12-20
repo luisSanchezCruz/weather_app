@@ -1,8 +1,7 @@
 import 'package:weather_repository/weather_repository.dart';
 
-
-// Default hardcoded locations.
-List<LocationResult> defaultLocations = LocationResult.fromList([
+// Data.
+var locations = [
   {
     "title": "San Francisco",
     "location_type": "City",
@@ -21,4 +20,7 @@ List<LocationResult> defaultLocations = LocationResult.fromList([
     "woeid": 2487889,
     "latt_long": "32.715691,-117.161720"
   },
-]);
+];
+
+// Default hardcoded locations.
+List<Location> defaultLocations = Location.fromList(locations);

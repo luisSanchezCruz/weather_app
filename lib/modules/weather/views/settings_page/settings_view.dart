@@ -3,9 +3,13 @@ part of 'settings_page.dart';
 class SettingsView extends StatelessWidget {
   const SettingsView({Key? key}) : super(key: key);
 
-  void handleSelect(BuildContext context, int woeid) {
-    context.read<WeatherBloc>().changeSelectedLocation(woeid.toString());
+  void handleSelect(BuildContext context, Location location) {
+    context.read<WeatherBloc>().changeSelectedLocation(location);
     Navigator.of(context).pop();
+  }
+
+  void openSearchPage(BuildContext context) {
+    Navigator.of(context).pushNamed(SearchPage.route);
   }
 
   @override
@@ -30,14 +34,18 @@ class SettingsView extends StatelessWidget {
                   state.locations[index - 1].title,
                   style: const TextStyle(fontSize: 18),
                 ),
-                trailing: state.selectedLocationWoeid ==
-                        state.locations[index - 1].woeid.toString()
+                trailing: state.selectedLocation.woeid ==
+                        state.locations[index - 1].woeid
                     ? const Icon(Icons.radio_button_checked)
                     : const Icon(Icons.radio_button_unchecked),
-                onTap: () =>
-                    handleSelect(context, state.locations[index - 1].woeid),
+                onTap: () => handleSelect(context, state.locations[index - 1]),
               );
             },
+          ),
+          floatingActionButton: FloatingActionButton(
+            backgroundColor: Colors.black54,
+            onPressed: () => openSearchPage(context),
+            child: const Icon(Icons.add),
           ),
         );
       },

@@ -18,7 +18,7 @@ class WeatherRepository implements WeatherDataProvider {
 
   /// Search locations based on the [query].
   @override
-  Future<List<LocationResult>> getLocationByQuery(String query) async {
+  Future<List<Location>> getLocationByQuery(String query) async {
     // Create request.
     var request = Uri(
       scheme: _scheme,
@@ -36,8 +36,8 @@ class WeatherRepository implements WeatherDataProvider {
         // Decode body.
         var data = jsonDecode(response.body);
 
-        // Creates a list of [LocationResult] using the decoded data.
-        return LocationResult.fromList(data);
+        // Creates a list of [Location] using the decoded data.
+        return Location.fromList(data);
       }
 
       // Return empty list if response is not success.

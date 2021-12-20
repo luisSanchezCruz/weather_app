@@ -36,7 +36,7 @@ class Weather extends Equatable {
     }
   }
 
-  String get temperatureRange => '${minTemp.floor()}°/${maxTemp.floor()}';
+  String get temperatureRange => '${minTemp.floor()}°/${maxTemp.floor()}°';
 
   String get iconUrl =>
       'https://www.metaweather.com/static/img/weather/png/64/$stateAbbr.png';
@@ -91,14 +91,14 @@ class Weather extends Equatable {
 
   // Handy for testing.
   static final empty = Weather._(
-    stateName: 'Showers',
-    stateAbbr: 's',
+    stateName: '',
+    stateAbbr: '',
     date: DateTime.now(),
-    temp: 40.29,
-    minTemp: 30.18,
-    maxTemp: 42.15,
-    humidity: 30,
-    windSpeed: 5.687062952358228,
+    temp: 0,
+    minTemp: 0,
+    maxTemp: 0,
+    humidity: 0,
+    windSpeed: 0,
   );
 
   @override

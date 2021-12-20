@@ -1,8 +1,8 @@
 import 'package:equatable/equatable.dart';
 
-/// [LocationResult] result of the search endpoint.
-class LocationResult extends Equatable {
-  const LocationResult._({
+/// [Location] result of the search endpoint.
+class Location extends Equatable {
+  const Location._({
     required this.title,
     required this.locationType,
     required this.lattLong,
@@ -21,8 +21,8 @@ class LocationResult extends Equatable {
   // Where On Earth ID.
   final int woeid;
 
-  factory LocationResult.fromJson(Map<String, dynamic> json) {
-    return LocationResult._(
+  factory Location.fromJson(Map<String, dynamic> json) {
+    return Location._(
       title: json['title'],
       locationType: json['location_type'],
       lattLong: json['latt_long'],
@@ -30,16 +30,16 @@ class LocationResult extends Equatable {
     );
   }
   // Transform data to a list of LocationResult.
-  static List<LocationResult> fromList(List<Map<String, dynamic>> data) {
-    return data.map<LocationResult>((e) => LocationResult.fromJson(e)).toList();
+  static List<Location> fromList(List<dynamic> data) {
+    return data.map<Location>((e) => Location.fromJson(e)).toList();
   }
 
   // Handy for testing.
-  static const empty = LocationResult._(
-    title: 'Londom',
-    locationType: 'City',
-    lattLong: '-122.56,88.95',
-    woeid: 2488867,
+  static const empty = Location._(
+    title: '',
+    locationType: '',
+    lattLong: '',
+    woeid: 0,
   );
 
   @override

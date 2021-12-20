@@ -1,3 +1,3 @@
 // Export models.
-export 'location_result.dart';
+export 'location.dart';
 export 'weather.dart';

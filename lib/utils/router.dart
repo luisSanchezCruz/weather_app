@@ -19,5 +19,6 @@ Map<String, WidgetBuilder> getAppRoutes() {
     '/': (context) => ForecastListPage.page(weatherBloc: weatherBloc),
     '/settings': (context) => SettingsPage.page(weatherBloc: weatherBloc),
     '/details': (context) => ForecastDetailPage.page(),
+    '/search': (context) => SearchPage.page(weatherBloc: weatherBloc),
   };
 }

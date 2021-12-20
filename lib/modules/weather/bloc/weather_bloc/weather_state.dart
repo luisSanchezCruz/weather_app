@@ -8,7 +8,7 @@ class WeatherState extends Equatable {
     this.locations = const [],
     this.weathers = const [],
     this.loading = false,
-    this.selectedLocationWoeid = '',
+    this.selectedLocation = Location.empty,
   });
 
   factory WeatherState.initialState() {
@@ -16,7 +16,7 @@ class WeatherState extends Equatable {
   }
 
   // List of locations.
-  final List<LocationResult> locations;
+  final List<Location> locations;
 
   //List of weathers.
   final List<Weather> weathers;
@@ -24,21 +24,20 @@ class WeatherState extends Equatable {
   // Is the app loading any data?.
   final bool loading;
 
-  // Selected location woeid.
-  final String selectedLocationWoeid;
+  // Selected location.
+  final Location selectedLocation;
 
   WeatherState copyWith({
-    List<LocationResult>? locations,
+    List<Location>? locations,
     List<Weather>? weathers,
     bool? loading,
-    String? selectedLocationWoeid,
+    Location? selectedLocation,
   }) =>
       WeatherState._(
         locations: locations ?? this.locations,
         weathers: weathers ?? this.weathers,
         loading: loading ?? this.loading,
-        selectedLocationWoeid:
-            selectedLocationWoeid ?? this.selectedLocationWoeid,
+        selectedLocation: selectedLocation ?? this.selectedLocation,
       );
 
   @override
@@ -46,6 +45,6 @@ class WeatherState extends Equatable {
         locations,
         weathers,
         loading,
-        selectedLocationWoeid,
+        selectedLocation,
       ];
 }

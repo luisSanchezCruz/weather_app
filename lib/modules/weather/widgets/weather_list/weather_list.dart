@@ -7,20 +7,6 @@ class WeatherList extends StatelessWidget {
     Key? key,
   }) : super(key: key);
 
-  String _getLocationName(BuildContext context) {
-    var woeid = context.read<WeatherBloc>().state.selectedLocationWoeid;
-
-    var locations = context.read<WeatherBloc>().state.locations;
-
-    var title = locations
-        .firstWhere((e) => e.woeid.toString() == woeid,
-            orElse: () =>
-                LocationResult.fromJson(const {'title': 'unknow location'}))
-        .title;
-
-    return title;
-  }
-
   @override
   Widget build(BuildContext context) {
     // Watch for states changes.
@@ -33,7 +19,7 @@ class WeatherList extends StatelessWidget {
       // use length + 1 to add the location title.
       itemCount: weathers.length + 1,
       itemBuilder: (context, index) {
-        // Pust the location title on top of the list.
+        // Puts the location title on top of the list.
         if (index == 0) return _buildTitle(context);
 
         return WeatherListItem(weather: weathers[index - 1]);
@@ -45,7 +31,7 @@ class WeatherList extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.only(top: 20, left: 20, bottom: 5),
       child: Text(
-        _getLocationName(context),
+        context.read<WeatherBloc>().state.selectedLocation.title,
         style: const TextStyle(
           fontSize: 25,
           color: Colors.black54,

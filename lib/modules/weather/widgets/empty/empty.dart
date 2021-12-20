@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class Empty extends StatelessWidget {
@@ -8,7 +7,7 @@ class Empty extends StatelessWidget {
   Widget build(BuildContext context) {
     return const Center(
       child: Text(
-        "Sorry there's no data.",
+        "No data found!",
         style: TextStyle(
           fontSize: 22,
           color: Colors.black54,

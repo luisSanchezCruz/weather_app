@@ -1,5 +1,6 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:weather_app/modules/weather/weather.dart';
 
 import 'package:weather_repository/weather_repository.dart';
 import 'package:weather_app/utils/default_locations.dart' show defaultLocations;
@@ -35,19 +36,30 @@ class WeatherBloc extends Cubit<WeatherState> {
 
     var woeid = (await Storage.getWoeid()) ?? '';
 
-    emit(state.copyWith(
-      locations: defaultLocations,
-      selectedLocationWoeid:
-          woeid.isEmpty ? defaultLocations.first.woeid.toString() : woeid,
-    ));
-    fetchWeathers(defaultLocations[0].woeid.toString());
+    var selectedLocation = defaultLocations.firstWhere(
+      (e) => e.woeid.toString() == woeid,
+      orElse: () => defaultLocations.first,
+    );
+
+    emit(
+      state.copyWith(
+        locations: defaultLocations,
+        selectedLocation: selectedLocation,
+      ),
+    );
+    fetchWeathers(selectedLocation.woeid.toString());
   }
 
   // Change selected location.
-  void changeSelectedLocation(String woeid) {
-    Storage.setWoeid(woeid);
+  void changeSelectedLocation(Location location) {
+    Storage.setWoeid(location.woeid.toString());
 
-    emit(state.copyWith(selectedLocationWoeid: woeid));
-    fetchWeathers(woeid);
+    emit(state.copyWith(selectedLocation: location));
+    fetchWeathers(location.woeid.toString());
+  }
+
+  // Adds a location to our list of locations.
+  void addLocation(Location location) {
+    emit(state.copyWith(locations: [...state.locations, location]));
   }
 }

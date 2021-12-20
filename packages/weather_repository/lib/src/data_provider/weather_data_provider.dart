@@ -7,7 +7,7 @@ import 'package:weather_repository/weather_repository.dart';
 /// this abstract class and create your own repository.
 abstract class WeatherDataProvider {
   /// Search locations by a [query].
-  Future<List<LocationResult>> getLocationByQuery(String query);
+  Future<List<Location>> getLocationByQuery(String query);
 
   /// Returns a list of [Weather].
   Future<List<Weather>> getWeather(String woeid);
